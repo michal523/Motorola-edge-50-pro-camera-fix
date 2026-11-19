@@ -1,0 +1,53 @@
+name: Budowanie APK (Kadr RAW)
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobierz kod repozytorium
+        uses: actions/checkout@v4
+
+      - name: Ustaw JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Konfiguracja Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Zaakceptuj licencje i zainstaluj SDK 36
+        run: |
+          yes | sdkmanager --licenses > /dev/null 2>&1 || true
+          sdkmanager "platforms;android-36" "build-tools;36.0.0" || true
+          sdkmanager "platforms;android-36.1" || true
+
+      - name: Przygotuj debug.keystore
+        run: |
+          if [ ! -f debug.keystore ]; then
+            if [ -f debug.keystore.base64 ]; then
+              base64 -d debug.keystore.base64 > debug.keystore
+            else
+              keytool -genkeypair -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+            fi
+          fi
+
+      - name: Konfiguracja Gradle 9.3.1
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.3.1'
+
+      - name: Zbuduj plik Debug APK
+        run: gradle assembleDebug --no-daemon
+
+      - name: Udostępnij gotowy plik APK do pobrania
+        uses: actions/upload-artifact@v4
+        with:
+          name: KadrRAW-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
