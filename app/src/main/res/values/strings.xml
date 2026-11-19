@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Kadr RAW</string>
+    <string name="camera_permission_title">Dostęp do aparatu i mikrofonu</string>
+    <string name="camera_permission_desc">Kadr RAW wymaga bezpośredniego dostępu do matryc Camera2 oraz mikrofonu do nagrywania 4K z buforowaniem w pamięci RAM.</string>
+    <string name="grant_permission">Przyznaj uprawnienia</string>
+    <string name="mode_pro">PRO</string>
+    <string name="mode_raw">RAW / 50MP</string>
+    <string name="mode_motion">Rozmycie</string>
+    <string name="mode_superres">Super-Res</string>
+    <string name="mode_video4k">4K RAM</string>
+    <string name="isp_bypass_label">Czysta Matryca (Bez ISP)</string>
+    <string name="isp_standard_label">Standardowe ISP</string>
+    <string name="isp_kadr_label">Silnik Kadr AI</string>
+    <string name="lab_title">Laboratorium i Odszumianie AI</string>
+    <string name="docs_title">Dokumentacja GitHub i Edge 50 Pro</string>
+</resources>

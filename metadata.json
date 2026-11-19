@@ -1,0 +1,6 @@
+{
+  "name": "Kadr RAW",
+  "description": "Zaawansowany aparat Pro i laboratorium obliczeniowe dla Androida i Motorola Edge 50 Pro: tryb 50 MP PRO/RAW (DNG), pełna kontrola czasu naświetlania i balansu bieli, symulator ND i rozmycia ruchu, Super-Rozdzielczość z drgań ręki, odszumianie AI, Focus Peaking, histogram na żywo oraz nagrywanie 4K ze stabilizacją buforowane w pamięci RAM.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
